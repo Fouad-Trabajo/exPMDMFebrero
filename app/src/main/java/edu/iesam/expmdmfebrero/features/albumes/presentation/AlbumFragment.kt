@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,7 +58,23 @@ class AlbumFragment : Fragment() {
             }
         }
 
+        binding?.topAppBar?.setOnMenuItemClickListener { menuItem ->
+            val color = when (menuItem.itemId) {
+                R.id.favorite -> {
+                    ContextCompat.getColor(requireContext(), R.color.black)
+                } //this sobra
+                else -> {
+                    ContextCompat.getColor(
+                        requireContext(),
+                        com.google.android.material.R.color.design_default_color_error
+                    )
+                }
+            }
 
+            menuItem.icon?.setTint(color)
+
+            true
+        }
     }
 
     private fun showError(message: String?) {
