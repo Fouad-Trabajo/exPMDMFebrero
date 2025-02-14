@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/AlbumFragment">
+
+    <fragment
+        android:id="@+id/AlbumFragment"
+        android:name="edu.iesam.expmdmfebrero.features.albumes.presentation.AlbumFragment"
+        android:label="AlbumFragment">
+        <action
+            android:id="@+id/action_AlbumFragment_to_SetaFragment"
+            app:destination="@+id/SetaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SetaFragment"
+        android:name="edu.iesam.expmdmfebrero.features.mushroom.presentation.MushroomFragment"
+        android:label="SetaFragment" />
+</navigation>

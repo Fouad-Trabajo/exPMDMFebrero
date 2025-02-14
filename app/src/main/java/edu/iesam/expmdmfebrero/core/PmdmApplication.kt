@@ -2,6 +2,7 @@ package edu.iesam.expmdmfebrero.core
 
 import android.app.Application
 import edu.iesam.expmdmfebrero.features.albumes.di.AlbumModule
+import edu.iesam.expmdmfebrero.features.mushroom.di.SetaModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -11,7 +12,8 @@ class PmdmApplication : Application() { // Corregido el espacio aquí
         startKoin {
             androidContext(this@PmdmApplication)
             modules(
-                AlbumModule
+                AlbumModule,
+                SetaModule
             )
         }
     }

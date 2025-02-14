@@ -1,4 +1,4 @@
-package edu.iesam.expmdmfebrero.features.albumes.presentation
+package edu.iesam.expmdmfebrero.features.mushroom.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -9,60 +9,60 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import edu.iesam.expmdmfebrero.R
-import edu.iesam.expmdmfebrero.databinding.FragmentAlbumBinding
-import edu.iesam.expmdmfebrero.features.albumes.presentation.adapter.AlbumAdapter
+import edu.iesam.expmdmfebrero.databinding.FragmentMushroomBinding
+import edu.iesam.expmdmfebrero.features.mushroom.presentation.adapter.MushroomAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AlbumFragment : Fragment() {
+class MushroomFragment : Fragment() {
 
-    private var binding: FragmentAlbumBinding? = null
-    private val albumViewModel: AlbumViewModel by viewModel()
-    private lateinit var albumAdapter: AlbumAdapter
+    private var binding: FragmentMushroomBinding? = null
+    private val mushroomViewModel: MushroomViewModel by viewModel()
+    private lateinit var mushroomAdapter: MushroomAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAlbumBinding.inflate(inflater, container, false)
+        binding = FragmentMushroomBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        albumAdapter = AlbumAdapter {
-            findNavController().navigate(R.id.action_AlbumFragment_to_SetaFragment)
+        mushroomAdapter = MushroomAdapter {
         }
-        binding?.recyclerAlbum?.layoutManager = LinearLayoutManager(context)
-        binding?.recyclerAlbum?.adapter = albumAdapter
+        binding?.recyclerSetas?.layoutManager = LinearLayoutManager(context)
+        binding?.recyclerSetas?.adapter = mushroomAdapter
 
-        albumViewModel.getAlbums()
+        mushroomViewModel.getAlbums()
 
-        albumViewModel.uiState.observe(viewLifecycleOwner) { uiState ->
+        mushroomViewModel.uiState.observe(viewLifecycleOwner) { uiState ->
             when (uiState) {
-                is AlbumViewModel.UiState.Loading -> {
+                is MushroomViewModel.UiState.Loading -> {
                     binding?.progressBar?.visibility = View.VISIBLE
                 }
 
-                is AlbumViewModel.UiState.Success -> {
+                is MushroomViewModel.UiState.Success -> {
                     binding?.progressBar?.visibility = View.GONE
-                    albumAdapter.submitList(uiState.albums)
+                    mushroomAdapter.submitList(uiState.albums)
                 }
 
-                is AlbumViewModel.UiState.Error -> {
+                is MushroomViewModel.UiState.Error -> {
                     binding?.progressBar?.visibility = View.GONE
                     showError(uiState.exception.message)
                 }
             }
         }
 
-
+        binding?.topAppBar?.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun showError(message: String?) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        Log.d("@dev", "mensaje de error: $message")
+        Log.d("@dev", "mensaje de error de la view: $message")
     }
 
 

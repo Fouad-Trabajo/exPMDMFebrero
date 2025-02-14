@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">exPMDMFebrero</string>
+    <string name="title_mushrooms">Listado de setas del album</string>
+    <string name="title_albums">Listado de albumes</string>
+    <string name="null_value">null</string>
+    <string name="name_album">Nombre del Álbum</string>
+    <string name="date_creation">Fecha de Creación</string>
+    <string name="description">Descripción</string>
+    <string name="favorites">Favoritos</string>
 </resources>
