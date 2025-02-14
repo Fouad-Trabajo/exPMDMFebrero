@@ -32,6 +32,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -45,4 +49,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // Koin Core
+    implementation(libs.koin.core)
+    // Koin para Android
+    implementation(libs.koin.android)
+    // Koin para ViewModel (Jetpack)
+    // implementation(libs.koin.androidx.viewmodel)
+    //koin annotations
+    implementation(libs.koin.annotations)
+    //navigation component
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui)
+    //coil: images
+    implementation(libs.coil)
+
 }
